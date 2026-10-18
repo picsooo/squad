@@ -1,0 +1,329 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow, noarchive">
+<title>Choco Squad</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cellipse cx='32' cy='32' rx='30' ry='24' fill='%23ED1B24'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Arial Black,Arial' font-weight='900' font-size='34' fill='%232E3192' font-style='italic'%3EC%3C/text%3E%3C/svg%3E">
+<style>
+@font-face{font-family:Baloo;src:url(../assets/fonts/baloo-800.woff2) format('woff2');font-weight:800;font-display:swap}
+@font-face{font-family:Baloo;src:url(../assets/fonts/baloo-600.woff2) format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:Nunito;src:url(../assets/fonts/nunito-400.woff2) format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:Nunito;src:url(../assets/fonts/nunito-700.woff2) format('woff2');font-weight:700;font-display:swap}
+@font-face{font-family:Nunito;src:url(../assets/fonts/nunito-800.woff2) format('woff2');font-weight:800;font-display:swap}
+@font-face{font-family:Bhaijaan;src:url(../assets/fonts/bhaijaan-700.woff2) format('woff2');font-weight:700;font-display:swap}
+:root{--red:#ED1B24;--blue:#2E3192;--ink:#23214a;--cream:#FFF8EF;--pink:#FF7AA8;--sun:#FFC93C;--mint:#3DDC97;--sky:#4CC9F0;--choco:#4a2410;--lilac:#9B5DE5}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body,html{overflow-x:clip}
+body{margin:0;background:var(--cream);color:var(--ink);font:400 17px/1.6 Nunito,system-ui,sans-serif}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:Baloo,system-ui,sans-serif;font-weight:800;line-height:1;margin:0}
+.ar{font-family:Bhaijaan,system-ui,sans-serif;direction:rtl}
+.wrap{width:min(1180px,100% - 32px);margin:auto}
+.kick{display:inline-flex;align-items:center;gap:8px;font:800 13px/1 Nunito;letter-spacing:.14em;text-transform:uppercase;padding:9px 16px;border-radius:999px;background:#fff;border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:10px;font:800 17px/1 Nunito;padding:16px 26px;border-radius:999px;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink);background:var(--sun);color:var(--ink);cursor:pointer;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}.btn:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+.btn.red{background:var(--red);color:#fff}.btn.w{background:#fff}
+section{position:relative}
+.h2{font-size:clamp(38px,5.5vw,68px);letter-spacing:-.01em}.h2 .ar{font-size:.85em;color:var(--red);display:block;margin-top:6px;text-align:left}
+.lead{max-width:600px;font-size:18px;color:#4b4870}
+/* nav */
+.nav{position:fixed;top:12px;left:0;right:0;z-index:60;pointer-events:none}
+.nav .in{pointer-events:auto;width:min(1180px,100% - 24px);margin:auto;display:flex;align-items:center;justify-content:space-between;background:#fff;border:3px solid var(--ink);border-radius:999px;padding:6px 8px 6px 14px;box-shadow:4px 4px 0 var(--ink)}
+.nav img{height:44px;width:auto}.nav .links{display:flex;gap:4px}.nav .links a{font:800 14px/1 Nunito;padding:11px 14px;border-radius:999px}.nav .links a:hover{background:var(--sun)}
+.nav .links a.go{background:var(--red);color:#fff}
+@media(max-width:820px){.nav .links a:not(.go){display:none}}
+/* hero */
+.hero{min-height:100svh;background:radial-gradient(120% 80% at 50% 0%,#4547c9 0%,var(--blue) 45%,#1c1d6b 100%);color:#fff;overflow:hidden;padding:130px 0 0;text-align:center}
+.hero:before{content:"";position:absolute;inset:0;background:repeating-conic-gradient(from 0deg at 50% 110%,rgba(255,255,255,.06) 0 6deg,transparent 6deg 12deg);animation:spin 60s linear infinite;transform-origin:50% 110%}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero .kick,.hero h1,.hero .sub,.hero p{z-index:2}.hero h1{font-size:clamp(64px,11vw,150px);color:var(--sun);text-shadow:0 6px 0 var(--red),0 12px 0 var(--choco);position:relative}
+.hero h1 span{display:inline-block;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-12px) rotate(-2deg)}}
+.hero .sub{font:800 clamp(20px,2.4vw,28px)/1.2 Baloo;margin:18px 0 8px;position:relative}
+.hero p{max-width:620px;margin:0 auto 26px;color:#d9dcff;position:relative}
+.hero .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:3}
+.stage{position:relative;height:clamp(300px,42vw,520px);margin-top:30px;z-index:2}
+.stage img{position:absolute;bottom:0;height:var(--h);cursor:pointer;transition:transform .3s cubic-bezier(.3,1.8,.5,1);filter:drop-shadow(0 18px 18px rgba(0,0,0,.35));animation:hop var(--d) ease-in-out infinite}
+.stage img:hover{transform:translateY(-30px) scale(1.06) rotate(-3deg)}
+@keyframes hop{0%,100%{translate:0 0}50%{translate:0 -14px}}
+.floor{position:absolute;left:0;right:0;bottom:0;height:120px;background:var(--cream);clip-path:ellipse(75% 100% at 50% 100%);z-index:1}
+.candy{position:absolute;border-radius:50%;animation:float var(--d) ease-in-out infinite;z-index:0;opacity:.75}
+@keyframes float{50%{transform:translateY(-26px) rotate(40deg)}}
+.marq{background:var(--red);color:#fff;border-block:4px solid var(--ink);overflow:hidden;white-space:nowrap;padding:12px 0;font:800 26px/1 Baloo;transform:rotate(-1.5deg);margin-top:-10px;position:relative;z-index:4}
+.marq div{display:inline-block;animation:mq 22s linear infinite}.marq b{color:var(--sun);margin:0 22px}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* teaser */
+.teaser{padding:110px 0 90px}
+.tgrid{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+@media(max-width:860px){.tgrid{grid-template-columns:1fr}}
+.phone{position:relative;width:min(340px,80vw);margin:auto;border-radius:46px;background:#111;padding:12px;border:4px solid var(--ink);box-shadow:12px 12px 0 var(--red);transform:rotate(-3deg);transition:transform .4s}
+.phone:hover{transform:rotate(0) scale(1.02)}
+.phone video{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:34px;display:block;background:#000}
+.phone .notch{position:absolute;top:22px;left:50%;translate:-50% 0;width:90px;height:24px;border-radius:20px;background:#111;z-index:2}
+.snd{position:absolute;bottom:26px;left:50%;translate:-50% 0;z-index:3;font-size:15px;padding:12px 18px}
+.stick{position:absolute;font:800 18px/1 Baloo;padding:12px 16px;border-radius:16px;border:3px solid var(--ink);background:#fff;box-shadow:4px 4px 0 var(--ink);animation:hop 3s ease-in-out infinite}
+.facts{display:flex;gap:14px;flex-wrap:wrap;margin:26px 0}
+.fact{background:#fff;border:3px solid var(--ink);border-radius:20px;padding:14px 18px;box-shadow:4px 4px 0 var(--ink);min-width:120px}
+.fact b{display:block;font:800 30px/1 Baloo;color:var(--red)}.fact span{font-size:13px;font-weight:700;color:#6d6a90}
+/* squad cards */
+.squad{padding:100px 0;background:var(--sun);border-block:4px solid var(--ink);overflow:hidden}
+.squad:before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(74,36,16,.12) 3px,transparent 3.5px);background-size:28px 28px}
+.cards{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:44px;position:relative}
+@media(max-width:1000px){.cards{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.cards{grid-template-columns:1fr}}
+.card{perspective:1200px;height:420px;cursor:pointer}
+.card .in{position:relative;width:100%;height:100%;transition:transform .7s cubic-bezier(.3,1.4,.5,1);transform-style:preserve-3d}
+.card.on .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:26px;border:4px solid var(--ink);box-shadow:6px 6px 0 var(--ink);overflow:hidden;display:flex;flex-direction:column}
+.front{background:var(--c)}
+.front:before{content:"";position:absolute;inset:0;background:repeating-conic-gradient(from 0deg at 50% 60%,rgba(255,255,255,.18) 0 10deg,transparent 10deg 20deg)}
+.front img{position:relative;height:290px;width:100%;object-fit:contain;margin-top:14px;filter:drop-shadow(0 10px 10px rgba(0,0,0,.25));transition:transform .4s cubic-bezier(.3,1.8,.5,1)}
+.card:hover .front img{transform:scale(1.08) rotate(-3deg)}
+.front .nm{position:relative;margin:auto 12px 12px;background:#fff;border:3px solid var(--ink);border-radius:16px;padding:10px 12px;text-align:center}
+.front .nm b{display:block;font:800 22px/1 Baloo}.front .nm .ar{font-size:18px;color:var(--red)}
+.num{position:absolute;top:10px;left:12px;font:800 14px/1 Nunito;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:6px 10px;z-index:2}
+.back{transform:rotateY(180deg);background:#fff;padding:20px;gap:10px}
+.back .role{font:800 13px/1 Nunito;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--c);padding:8px 12px;border-radius:999px;align-self:flex-start;border:2px solid var(--ink)}
+.back h3{font-size:30px}.back .q{font:700 22px/1.4 Bhaijaan;direction:rtl;color:var(--red);background:var(--cream);border-radius:16px;padding:12px;border:2px dashed var(--ink)}
+.back p{margin:0;font-size:15px;color:#4b4870}.back .pr{margin-top:auto;font:800 13px/1 Nunito;color:#6d6a90}
+.hint{font:800 14px/1 Nunito;margin-top:16px;position:relative}
+/* machine */
+.mach{padding:110px 0;background:radial-gradient(90% 70% at 50% 40%,#5a2bd0,#24105e);color:#fff;overflow:hidden}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}@media(max-width:860px){.mgrid{grid-template-columns:1fr}}
+.mimg{position:relative;max-width:440px;margin:auto}.mimg img.m{border-radius:30px;border:4px solid #fff;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.mimg.shake img.m{animation:shk .12s linear 8}@keyframes shk{25%{transform:translate(-6px,3px) rotate(-1deg)}75%{transform:translate(6px,-3px) rotate(1deg)}}
+.out{position:absolute;left:50%;bottom:-30px;width:230px;translate:-50% 0;scale:0;transition:scale .5s cubic-bezier(.3,1.8,.5,1);filter:drop-shadow(0 20px 20px rgba(0,0,0,.5));pointer-events:none}
+.out.show{scale:1}
+.res{background:#fff;color:var(--ink);border:4px solid var(--ink);border-radius:24px;padding:22px;box-shadow:6px 6px 0 var(--sun);min-height:150px;margin-top:22px}
+.res b{font:800 28px/1.1 Baloo;display:block}.res .ar{font-size:22px;color:var(--red)}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:80}
+/* posts */
+.posts{padding:110px 0;overflow:hidden}
+.pgrid{display:grid;grid-template-columns:360px 1fr;gap:50px;align-items:start;margin-top:40px}@media(max-width:900px){.pgrid{grid-template-columns:1fr}}
+.ig{background:#fff;border:4px solid var(--ink);border-radius:40px;padding:14px;box-shadow:10px 10px 0 var(--blue);max-width:360px;margin:auto}
+.ig .top{display:flex;align-items:center;gap:10px;padding:6px 6px 10px;font:800 14px/1.2 Nunito}.ig .top img{width:38px;height:38px;border-radius:50%;border:2px solid var(--red);object-fit:contain;background:#fff;padding:2px}
+.ig .shot{aspect-ratio:4/5;border-radius:16px;overflow:hidden;background:var(--cream)}.ig .shot img{width:100%;height:100%;object-fit:cover;transition:opacity .3s}
+.ig .bar{display:flex;gap:14px;font-size:22px;padding:10px 6px 4px}.ig .cap{font-size:14px;padding:0 6px 6px}.ig .cap .ar{font-size:16px}
+.wall{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.wall .p{aspect-ratio:4/5;border-radius:18px;overflow:hidden;border:4px solid var(--ink);box-shadow:5px 5px 0 var(--ink);cursor:pointer;transition:transform .3s cubic-bezier(.3,1.8,.5,1);background:#fff;position:relative}
+.wall .p:nth-child(odd){transform:rotate(-2.5deg)}.wall .p:nth-child(even){transform:rotate(2deg)}
+.wall .p:hover{transform:rotate(0) scale(1.05);z-index:2}.wall .p img{width:100%;height:100%;object-fit:cover}
+.wall .p.on{outline:5px solid var(--red);outline-offset:3px}
+.soon{position:absolute;inset:auto 8px 8px;background:var(--sun);border:2px solid var(--ink);border-radius:10px;font:800 11px/1 Nunito;padding:6px;text-align:center}
+/* missions */
+.miss{padding:110px 0;background:var(--mint);border-block:4px solid var(--ink)}
+.mapbox{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;margin-top:40px}@media(max-width:900px){.mapbox{grid-template-columns:1fr}}
+.map{background:#fff;border:4px solid var(--ink);border-radius:30px;box-shadow:8px 8px 0 var(--ink);padding:10px}
+.map svg{width:100%;height:auto;display:block}
+.pin{cursor:pointer}.pin circle{transition:r .2s}.pin:hover circle.b,.pin.on circle.b{r:14}
+.pin .ring{animation:ping 1.8s ease-out infinite;transform-box:fill-box;transform-origin:center}@keyframes ping{from{transform:scale(.6);opacity:1}to{transform:scale(2.4);opacity:0}}
+.ep{background:#fff;border:4px solid var(--ink);border-radius:26px;padding:26px;box-shadow:8px 8px 0 var(--red)}
+.ep .n{font:800 13px/1 Nunito;letter-spacing:.14em;color:var(--red);text-transform:uppercase}.ep h3{font-size:36px;margin:8px 0}.ep .ar{font-size:24px;color:var(--blue)}
+.ep .who{display:flex;gap:8px;margin-top:14px}.ep .who img{height:70px;width:auto;background:var(--cream);border-radius:14px;border:2px solid var(--ink);padding:4px}
+/* game */
+.game{padding:110px 0;background:linear-gradient(#ffd6e5,#ffeef5)}
+.gbox{position:relative;max-width:820px;margin:40px auto 0;border:4px solid var(--ink);border-radius:30px;overflow:hidden;box-shadow:10px 10px 0 var(--ink);background:linear-gradient(#7ed6ff,#c9f0ff 70%,#ffe08a 70%)}
+.gbox canvas{display:block;width:100%;height:auto;touch-action:none}
+.ghud{position:absolute;top:14px;left:14px;right:14px;display:flex;justify-content:space-between;font:800 22px/1 Baloo;pointer-events:none}
+.ghud span{background:#fff;border:3px solid var(--ink);border-radius:999px;padding:8px 14px}
+.gstart{position:absolute;inset:0;display:grid;place-items:center;background:rgba(35,33,74,.55)}
+.gstart div{text-align:center;color:#fff}.gstart h3{font-size:44px;margin-bottom:14px;color:var(--sun);text-shadow:0 4px 0 var(--ink)}
+/* calendar */
+.cal{padding:110px 0}
+.fmts{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:40px 0}@media(max-width:900px){.fmts{grid-template-columns:repeat(2,1fr)}}
+.fmt{background:#fff;border:3px solid var(--ink);border-radius:22px;padding:18px;box-shadow:5px 5px 0 var(--c)}
+.fmt i{display:inline-grid;place-items:center;width:46px;height:46px;border-radius:14px;background:var(--c);font-style:normal;font-size:24px;border:2px solid var(--ink)}
+.fmt b{display:block;font:800 21px/1.1 Baloo;margin:12px 0 4px}.fmt .ar{color:var(--red);font-size:17px}.fmt p{margin:6px 0 0;font-size:14px;color:#5b5880}
+.grid7{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;background:var(--blue);padding:16px;border-radius:26px;border:4px solid var(--ink)}
+.grid7 .d{background:rgba(255,255,255,.1);border-radius:12px;min-height:74px;padding:6px;color:#fff;font:800 13px/1 Nunito}
+.grid7 .h{min-height:auto;background:none;text-align:center;color:#c9cbff}
+.chip{display:block;margin-top:6px;border-radius:8px;padding:5px 6px;font:800 11px/1.1 Nunito;color:var(--ink);background:var(--c)}
+@media(max-width:640px){.chip{font-size:0;height:8px;padding:0}}
+/* cta */
+.cta2{padding:100px 0 60px;background:var(--red);color:#fff;text-align:center;overflow:hidden;border-top:4px solid var(--ink)}
+.cta2 h2{font-size:clamp(46px,7vw,90px);color:var(--sun);text-shadow:0 6px 0 var(--choco)}.cta2 .ar{font-size:clamp(30px,4vw,48px);display:block;margin:10px 0 24px}
+.tels{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+.foot{margin-top:60px;font-size:13px;opacity:.85}
+.reveal{opacity:0;transform:translateY(40px) scale(.97);transition:opacity .7s,transform .7s cubic-bezier(.3,1.4,.5,1)}.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style></head><body>
+<canvas id="confetti"></canvas>
+<header class="nav"><div class="in"><a href="../v2/index.html"><img src="img/logo.webp" alt="Choco Squad"></a>
+<nav class="links"><a href="#teaser">Le teaser</a><a href="#squad">La Squad</a><a href="#machine">La machine</a><a href="#posts">Les posts</a><a href="#missions">Missions</a><a href="#jeu">Le jeu</a><a class="go" href="../v2/index.html">← Le site</a></nav></div></header>
+
+<section class="hero" id="top">
+ <span class="kick" style="color:var(--ink);position:relative">✦ Série réseaux sociaux · Choco Squad</span>
+ <h1 class="ar" style="margin-top:22px"><span>فريق</span> <span style="animation-delay:.3s">شوكو</span> <span style="animation-delay:.6s">سكواد</span></h1>
+ <div class="sub">La Squad débarque sur vos écrans</div>
+ <p>Une bande de personnages attachants, un par marque, et une machine à surprises qui ne dort jamais. Une série en darija pour TikTok, Instagram et Facebook.</p>
+ <div class="cta"><a class="btn" href="#teaser">▶ Voir le teaser</a><a class="btn w" href="#squad">Rencontrer la Squad</a></div>
+ <div class="stage" id="stage">
+  <img src="img/twam.webp" alt="Twam" style="--h:46%;left:2%;--d:3.2s" data-k="2">
+  <img src="img/excite.webp" alt="Excite" style="--h:78%;left:18%;--d:2.6s" data-k="1">
+  <img src="img/lion.webp" alt="Chico le Lion" style="--h:100%;left:50%;margin-left:-11%;--d:3s;z-index:2" data-k="0">
+  <img src="img/astrat.webp" alt="Astra" style="--h:80%;right:17%;--d:2.9s" data-k="3">
+  <img src="img/anfal.webp" alt="Djeddi Anfal" style="--h:68%;right:1%;--d:3.4s" data-k="4">
+ </div>
+ <div class="floor"></div>
+</section>
+<div class="marq"><div id="mq"></div></div>
+
+<section class="teaser" id="teaser"><div class="wrap tgrid">
+ <div class="reveal">
+  <span class="kick">🎬 Le teaser de lancement</span>
+  <h2 class="h2" style="margin-top:18px">La machine à surprises <span class="ar">آلة المفاجآت</span></h2>
+  <p class="lead" style="margin-top:18px">La nuit, dans l'entrepôt de Sétif, une machine géante s'allume. Chico le Lion tourne la manivelle… et les produits Choco Squad sortent un par un. Une vidéo de 21 secondes pour annoncer la série, en darija, au format vertical.</p>
+  <div class="facts"><div class="fact"><b>21 s</b><span>format vertical</span></div><div class="fact"><b>3</b><span>plateformes</span></div><div class="fact"><b>J-7</b><span>avant l'épisode 1</span></div></div>
+  <a class="btn red" href="#squad">Découvrir les personnages →</a>
+ </div>
+ <div class="reveal" style="position:relative">
+  <div class="phone"><div class="notch"></div><video id="tv" src="teaser.mp4" poster="teaser.jpg" muted loop playsinline preload="metadata"></video><button class="btn snd" id="snd">🔊 Activer le son</button></div>
+  <div class="stick" style="top:8%;left:-2%;background:var(--sun)">قريباً !</div>
+  <div class="stick" style="bottom:14%;right:0;background:var(--mint);animation-delay:.8s">🍭 Nouveau</div>
+ </div>
+</div></section>
+
+<section class="squad" id="squad"><div class="wrap" style="position:relative">
+ <div class="reveal"><span class="kick">⭐ Le casting</span>
+ <h2 class="h2" style="margin-top:18px">Une marque, un héros <span class="ar">كل منتوج عندو بطل</span></h2>
+ <p class="lead" style="margin-top:14px;color:var(--choco)">Les enfants retiennent les personnages, les parents retiennent la marque. Touchez une carte pour la retourner.</p></div>
+ <div class="cards" id="cards"></div>
+</div></section>
+
+<section class="mach" id="machine"><div class="wrap mgrid">
+ <div class="reveal"><span class="kick" style="color:var(--ink)">🎰 Interactif</span>
+  <h2 class="h2" style="margin-top:18px;color:#fff">Tournez la machine <span class="ar" style="color:var(--sun)">دوّر الآلة</span></h2>
+  <p class="lead" style="color:#e2d8ff;margin-top:14px">Le même jeu que sur le site, version Squad : chaque tour fait sortir un personnage et sa réplique culte. Une idée de story Instagram interactive.</p>
+  <button class="btn" id="crank" style="margin-top:12px">↻ Tourner la manivelle</button>
+  <div class="res" id="res"><b>Qui va sortir ?</b><span class="ar">جرّب حظك !</span></div>
+ </div>
+ <div class="mimg reveal" id="mimg"><img class="m" src="img/machine.webp" alt="La machine à surprises"><img class="out" id="out" alt=""></div>
+</div></section>
+
+<section class="posts" id="posts"><div class="wrap">
+ <div class="reveal"><span class="kick">📱 Instagram & Facebook</span>
+ <h2 class="h2" style="margin-top:18px">Les posts du fil <span class="ar">المنشورات</span></h2>
+ <p class="lead" style="margin-top:14px">Entre deux épisodes, des visuels produits avec la Squad. Toujours les vrais emballages Choco Squad, une phrase courte en darija.</p></div>
+ <div class="pgrid">
+  <div class="ig reveal"><div class="top"><img src="img/logo.webp" alt=""><div>chocosquad<br><span style="font-weight:600;color:#888">Sétif, Algérie</span></div></div>
+   <div class="shot"><img id="igimg" src="../assets/img/p002.webp" alt=""></div>
+   <div class="bar">♡ 💬 ➤ <span style="margin-left:auto">🔖</span></div>
+   <div class="cap"><b>chocosquad</b> <span class="ar" id="igcap">طعم ولا أروع 🦁</span></div></div>
+  <div class="wall reveal" id="wall"></div>
+ </div>
+</div></section>
+
+<section class="miss" id="missions"><div class="wrap">
+ <div class="reveal"><span class="kick">🗺️ La série</span>
+ <h2 class="h2" style="margin-top:18px">Les missions de la Squad <span class="ar">مهمّات الفريق</span></h2>
+ <p class="lead" style="margin-top:14px;color:#1f4a3a">Chaque épisode, la Squad part livrer une surprise dans une nouvelle wilaya. Une aventure de 30 secondes, et à la fin : « Devenez revendeur ». Touchez une épingle.</p></div>
+ <div class="mapbox">
+  <div class="map reveal"><svg viewBox="160 -14 330 230"><defs><pattern id="dots" width="8" height="8" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.3" fill="#2E3192" opacity=".18"/></pattern></defs>
+   <rect x="160" y="-14" width="330" height="230" fill="#bfe9ff"/>
+   <path d="M497.5,11.8 L498.2,15.2 L493.7,17.6 L487.7,24.6 L487.1,26.2 L490.5,28.7 L489.8,36.1 L488.1,46.5 L489.1,51.5 L490.4,55.9 L491.4,65.1 L489.9,72.1 L488.3,80.4 L486.6,86.4 L482.4,90.7 L476.6,94.1 L468.5,103.3 L466.9,108.2 L467.9,116.6 L472.9,128.1 L474.4,132.4 L483.3,137.1 L487.1,142.3 L490.5,154.8 L500.4,162.4 L510.0,169.1 L512.3,177.5 L515.8,192.9 L519.7,210.5 L522.4,222.4 L521.3,231.8 L520.5,237.8 L527.5,249.4 L530.6,258.1 L532.6,266.4 L532.5,284.5 L535.4,309.7 L530.6,324.5 L531.9,333.8 L534.8,340.2 L533.7,349.8 L523.3,356.9 L521.4,363.0 L525.9,371.4 L537.7,389.5 L538.5,398.7 L543.9,410.9 L547.0,415.6 L550.1,417.3 L569.1,418.7 L581.2,423.4 L587.7,436.4 L593.4,448.6 L564.1,468.4 L534.8,488.3 L505.5,508.2 L476.2,528.1 L460.3,540.5 L445.2,555.0 L432.0,568.1 L419.9,580.0 L406.4,583.9 L386.9,588.2 L374.4,590.9 L359.0,594.3 L351.0,596.0 L348.8,596.0 L344.5,593.3 L342.6,590.7 L344.6,586.9 L345.9,584.4 L346.9,582.2 L345.3,577.4 L345.3,570.5 L343.3,567.9 L335.9,564.5 L330.3,563.3 L322.8,561.0 L317.5,555.0 L306.6,553.4 L302.5,550.8 L301.0,546.0 L291.2,539.9 L287.7,536.5 L287.9,531.1 L287.2,527.2 L273.7,517.1 L255.2,503.2 L236.6,489.2 L218.1,475.3 L199.5,461.4 L181.0,447.4 L162.6,433.5 L144.0,419.6 L126.9,406.7 L111.8,395.9 L98.6,386.5 L88.8,379.9 L78.2,372.7 L67.5,365.5 L56.9,358.3 L46.2,351.1 L35.6,343.9 L24.9,336.7 L14.3,329.5 L8.9,319.3 L8.9,305.9 L8.9,292.2 L8.9,282.5 L9.6,279.3 L17.0,274.0 L20.8,270.8 L29.9,264.5 L39.0,257.9 L44.5,256.3 L50.0,251.4 L52.6,250.0 L60.7,250.6 L66.9,251.6 L68.9,250.5 L70.5,246.5 L70.8,243.8 L72.8,243.6 L78.8,243.7 L84.8,243.1 L96.4,240.3 L104.9,235.7 L111.4,227.0 L119.5,219.6 L126.5,217.2 L137.3,211.2 L145.4,207.4 L150.9,206.2 L152.2,202.9 L149.1,200.6 L146.9,199.6 L146.6,196.7 L147.5,193.3 L146.2,188.4 L145.8,184.9 L148.1,182.6 L152.7,182.7 L169.3,177.9 L170.9,173.7 L173.1,170.3 L177.6,169.4 L185.4,168.3 L196.1,168.8 L208.4,169.3 L218.6,169.6 L220.0,167.1 L219.6,161.5 L224.6,157.2 L221.0,152.7 L216.5,149.6 L212.0,144.0 L208.7,134.0 L208.5,121.5 L206.2,114.5 L206.8,107.7 L204.0,95.4 L205.7,92.2 L203.3,89.3 L202.8,86.1 L203.9,82.9 L194.3,75.8 L191.9,71.5 L200.6,71.8 L212.7,65.0 L220.6,58.7 L228.8,53.1 L244.8,46.8 L253.3,47.7 L259.0,40.3 L269.3,33.8 L282.2,27.8 L310.6,23.8 L328.1,22.8 L338.8,16.8 L361.6,13.2 L392.7,14.2 L401.8,20.3 L408.2,20.3 L426.3,14.2 L433.8,8.3 L440.8,9.6 L456.9,11.6 L458.6,6.8 L470.1,9.8 L478.6,14.5 L497.5,11.8Z" fill="#FFE9A8" stroke="#23214a" stroke-width="2.2" stroke-linejoin="round"/><path d="M497.5,11.8 L498.2,15.2 L493.7,17.6 L487.7,24.6 L487.1,26.2 L490.5,28.7 L489.8,36.1 L488.1,46.5 L489.1,51.5 L490.4,55.9 L491.4,65.1 L489.9,72.1 L488.3,80.4 L486.6,86.4 L482.4,90.7 L476.6,94.1 L468.5,103.3 L466.9,108.2 L467.9,116.6 L472.9,128.1 L474.4,132.4 L483.3,137.1 L487.1,142.3 L490.5,154.8 L500.4,162.4 L510.0,169.1 L512.3,177.5 L515.8,192.9 L519.7,210.5 L522.4,222.4 L521.3,231.8 L520.5,237.8 L527.5,249.4 L530.6,258.1 L532.6,266.4 L532.5,284.5 L535.4,309.7 L530.6,324.5 L531.9,333.8 L534.8,340.2 L533.7,349.8 L523.3,356.9 L521.4,363.0 L525.9,371.4 L537.7,389.5 L538.5,398.7 L543.9,410.9 L547.0,415.6 L550.1,417.3 L569.1,418.7 L581.2,423.4 L587.7,436.4 L593.4,448.6 L564.1,468.4 L534.8,488.3 L505.5,508.2 L476.2,528.1 L460.3,540.5 L445.2,555.0 L432.0,568.1 L419.9,580.0 L406.4,583.9 L386.9,588.2 L374.4,590.9 L359.0,594.3 L351.0,596.0 L348.8,596.0 L344.5,593.3 L342.6,590.7 L344.6,586.9 L345.9,584.4 L346.9,582.2 L345.3,577.4 L345.3,570.5 L343.3,567.9 L335.9,564.5 L330.3,563.3 L322.8,561.0 L317.5,555.0 L306.6,553.4 L302.5,550.8 L301.0,546.0 L291.2,539.9 L287.7,536.5 L287.9,531.1 L287.2,527.2 L273.7,517.1 L255.2,503.2 L236.6,489.2 L218.1,475.3 L199.5,461.4 L181.0,447.4 L162.6,433.5 L144.0,419.6 L126.9,406.7 L111.8,395.9 L98.6,386.5 L88.8,379.9 L78.2,372.7 L67.5,365.5 L56.9,358.3 L46.2,351.1 L35.6,343.9 L24.9,336.7 L14.3,329.5 L8.9,319.3 L8.9,305.9 L8.9,292.2 L8.9,282.5 L9.6,279.3 L17.0,274.0 L20.8,270.8 L29.9,264.5 L39.0,257.9 L44.5,256.3 L50.0,251.4 L52.6,250.0 L60.7,250.6 L66.9,251.6 L68.9,250.5 L70.5,246.5 L70.8,243.8 L72.8,243.6 L78.8,243.7 L84.8,243.1 L96.4,240.3 L104.9,235.7 L111.4,227.0 L119.5,219.6 L126.5,217.2 L137.3,211.2 L145.4,207.4 L150.9,206.2 L152.2,202.9 L149.1,200.6 L146.9,199.6 L146.6,196.7 L147.5,193.3 L146.2,188.4 L145.8,184.9 L148.1,182.6 L152.7,182.7 L169.3,177.9 L170.9,173.7 L173.1,170.3 L177.6,169.4 L185.4,168.3 L196.1,168.8 L208.4,169.3 L218.6,169.6 L220.0,167.1 L219.6,161.5 L224.6,157.2 L221.0,152.7 L216.5,149.6 L212.0,144.0 L208.7,134.0 L208.5,121.5 L206.2,114.5 L206.8,107.7 L204.0,95.4 L205.7,92.2 L203.3,89.3 L202.8,86.1 L203.9,82.9 L194.3,75.8 L191.9,71.5 L200.6,71.8 L212.7,65.0 L220.6,58.7 L228.8,53.1 L244.8,46.8 L253.3,47.7 L259.0,40.3 L269.3,33.8 L282.2,27.8 L310.6,23.8 L328.1,22.8 L338.8,16.8 L361.6,13.2 L392.7,14.2 L401.8,20.3 L408.2,20.3 L426.3,14.2 L433.8,8.3 L440.8,9.6 L456.9,11.6 L458.6,6.8 L470.1,9.8 L478.6,14.5 L497.5,11.8Z" fill="url(#dots)"/>
+   <g id="pins"></g></svg></div>
+  <div class="ep reveal" id="ep"></div>
+ </div>
+</div></section>
+
+<section class="game" id="jeu"><div class="wrap">
+ <div class="reveal" style="text-align:center"><span class="kick">🎮 Mini-jeu</span>
+ <h2 class="h2" style="margin-top:18px">Attrape les bonbons ! <span class="ar">شدّ الحلوى !</span></h2>
+ <p class="lead" style="margin:14px auto 0">Déplacez Chico le Lion (souris, doigt ou flèches) et attrapez un maximum de bonbons en 30 secondes. Évitez les cailloux ! Le format idéal pour un concours sur la page.</p></div>
+ <div class="gbox reveal"><canvas id="gc" width="820" height="480"></canvas>
+  <div class="ghud"><span id="gs">🍬 0</span><span id="gt">⏱ 30</span></div>
+  <div class="gstart" id="gstart"><div><h3 id="gtitle">Prêt ?</h3><button class="btn" id="gbtn">▶ Jouer</button></div></div></div>
+</div></section>
+
+<section class="cal" id="plan"><div class="wrap">
+ <div class="reveal"><span class="kick">📅 La ligne éditoriale</span>
+ <h2 class="h2" style="margin-top:18px">Un mois avec la Squad <span class="ar">شهر مع الفريق</span></h2></div>
+ <div class="fmts">
+  <div class="fmt reveal" style="--c:var(--sun)"><i>🎬</i><b>La mission</b><span class="ar">المهمّة</span><p>L'épisode vidéo de la semaine : une wilaya, une surprise, 30 secondes.</p></div>
+  <div class="fmt reveal" style="--c:var(--pink)"><i>⭐</i><b>Carte perso</b><span class="ar">بطاقة البطل</span><p>Un personnage, sa réplique, son produit. À collectionner.</p></div>
+  <div class="fmt reveal" style="--c:var(--sky)"><i>🍫</i><b>Le produit star</b><span class="ar">منتوج الأسبوع</span><p>Visuel produit avec la Squad, vrai emballage, phrase en darija.</p></div>
+  <div class="fmt reveal" style="--c:var(--mint)"><i>🎁</i><b>Jeu & concours</b><span class="ar">مسابقة</span><p>Machine à surprises, mini-jeu, devinettes : on fait gagner des produits.</p></div>
+ </div>
+ <div class="grid7 reveal" id="g7"></div>
+</div></section>
+
+<section class="cta2" id="contact"><div class="wrap">
+ <h2>Rejoignez la Squad</h2><span class="ar">كونوا من فريقنا</span>
+ <p style="max-width:560px;margin:0 auto;color:#ffe1e1">Revendeurs : nouveautés en avant-première, présentoirs prêts à poser, et une marque qui fait parler d'elle sur les réseaux.</p>
+ <div class="tels"><a class="btn" href="tel:+213560526721">📞 0560 52 67 21</a><a class="btn" href="tel:+213560792064">📞 0560 79 20 64</a><a class="btn" href="tel:+213560498059">📞 0560 49 80 59</a></div>
+ <div class="foot">Choco Squad · Tiner Ouled Saber, Sétif · Proposition de série réseaux sociaux conçue par Webminds · contact@webminds.dz</div>
+</div></section>
+
+<script>
+const $=s=>document.querySelector(s);
+const CAST=[
+ {k:'lion',n:'Chico le Lion',ar:'الأسد شيكو',role:'Le chef',c:'#ED1B24',q:'الفريق مايحبسش !',d:"Le capitaine de la Squad. Courageux, gourmand, toujours le premier à tourner la manivelle.",p:'Chico Miko'},
+ {k:'excite',n:'Les Excitos',ar:'الإكسايتوس',role:'Les farceurs',c:'#3DDC97',q:'مفاجأة في كل علبة !',d:"Trois petits malins à lunettes noires. Ils sortent des boîtes Excite Surprise et mettent le bazar partout.",p:'Excite Surprise'},
+ {k:'twam',n:'Les jumeaux Twam',ar:'التوأم',role:'Les inséparables',c:'#4CC9F0',q:'واحد ما يكفيش… نديرو جوج !',d:"Deux graines de tournesol toujours ensemble : match, musique, et un paquet de Twam à partager.",p:'Twam'},
+ {k:'astrat',n:'Astra la fée',ar:'الجنية أسترا',role:'La magicienne',c:'#FF7AA8',q:'نحوّل كل نهار لحلوى !',d:"D'un coup de sucette magique, elle fait pleuvoir les fruits et les couleurs.",p:'Astrat Lollipop'},
+ {k:'anfal',n:'Djeddi Anfal',ar:'جدّي الأنفال',role:'Le sage',c:'#FFC93C',q:'الأصالة… سرّ البنّة',d:"Le gardien de la recette du nougat. Il raconte 40 ans de douceurs depuis Sétif.",p:'Nougat El Anfal'}];
+// marquee
+{const t='La Squad arrive <b>✦</b> فريق شوكو سكواد <b>✦</b> Chico le Lion <b>✦</b> Les Excitos <b>✦</b> التوأم <b>✦</b> Astra <b>✦</b> Djeddi Anfal <b>✦</b> قريباً <b>✦</b> ';$('#mq').innerHTML=t.repeat(6)}
+// candies in hero
+{const h=$('.hero'),C=['#FFC93C','#ED1B24','#3DDC97','#4CC9F0','#FF7AA8','#fff'];for(let i=0;i<26;i++){const e=document.createElement('div');e.className='candy';const s=10+Math.random()*26;
+ e.style.cssText=`width:${s}px;height:${s*(Math.random()>.5?1:.6)}px;left:${Math.random()*100}%;top:${10+Math.random()*70}%;background:${C[i%6]};--d:${4+Math.random()*5}s;animation-delay:-${Math.random()*5}s;border-radius:${Math.random()>.5?'50%':'40% 10%'}`;h.appendChild(e)}}
+// cards
+$('#cards').innerHTML=CAST.map((c,i)=>`<div class="card reveal" style="--c:${c.c};transition-delay:${i*.08}s"><div class="in">
+ <div class="face front"><span class="num">#0${i+1}</span><img src="img/${c.k}.webp" alt="${c.n}" loading="lazy"><div class="nm"><b>${c.n}</b><span class="ar">${c.ar}</span></div></div>
+ <div class="face back"><span class="role">${c.role}</span><h3>${c.n}</h3><div class="q">« ${c.q} »</div><p>${c.d}</p><div class="pr">🍬 Produit : ${c.p}</div></div></div></div>`).join('');
+document.querySelectorAll('.card').forEach(e=>e.onclick=()=>e.classList.toggle('on'));
+document.querySelectorAll('#stage img').forEach(e=>e.onclick=()=>{location.hash='squad';const c=document.querySelectorAll('.card')[+e.dataset.k];setTimeout(()=>c.classList.add('on'),700)});
+// teaser
+{const v=$('#tv'),b=$('#snd');new IntersectionObserver(es=>es.forEach(x=>x.isIntersecting?v.play().catch(()=>{}):v.pause()),{threshold:.4}).observe(v);
+ b.onclick=()=>{v.muted=!v.muted;if(!v.muted){v.currentTime=0;v.play()}b.textContent=v.muted?'🔊 Activer le son':'🔇 Couper le son'}}
+// confetti
+const cv=$('#confetti'),cx=cv.getContext('2d');let parts=[];function rs(){cv.width=innerWidth;cv.height=innerHeight}rs();addEventListener('resize',rs);
+function boom(x,y,n=90){const C=['#FFC93C','#ED1B24','#3DDC97','#4CC9F0','#FF7AA8','#9B5DE5'];for(let i=0;i<n;i++){const a=Math.random()*6.28,s=4+Math.random()*9;parts.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-6,r:Math.random()*6.28,vr:(Math.random()-.5)*.4,c:C[i%6],w:6+Math.random()*8,l:90})}if(!raf)loop()}
+let raf=0;function loop(){cx.clearRect(0,0,cv.width,cv.height);parts.forEach(p=>{p.vy+=.25;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.l--;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.globalAlpha=Math.min(1,p.l/30);cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.w/4,p.w,p.w/2);cx.restore()});parts=parts.filter(p=>p.l>0);raf=parts.length?requestAnimationFrame(loop):0}
+// machine
+{let busy=0,last=-1;$('#crank').onclick=e=>{if(busy)return;busy=1;const m=$('#mimg'),o=$('#out');o.classList.remove('show');m.classList.add('shake');
+ let k;do{k=Math.floor(Math.random()*CAST.length)}while(k===last);last=k;
+ setTimeout(()=>{m.classList.remove('shake');const c=CAST[k];o.src=`img/${c.k}.webp`;o.classList.add('show');const r=m.getBoundingClientRect();boom(r.left+r.width/2,r.bottom-60);
+  $('#res').innerHTML=`<b>${c.n} !</b><span class="ar">« ${c.q} »</span><p style="margin:8px 0 0;font-size:15px">${c.role} · ${c.p}</p>`;busy=0},1000)}}
+// posts wall (placeholders until mockups)
+{const P=[['../assets/img/p002.webp','طعم ولا أروع 🦁'],['../assets/img/p018.webp','الطعم اللي يحبوه الكل 🌻'],['../assets/img/p084.webp','فرح كل لحظة 🎁'],['../assets/img/p097.webp','ألوان و فواكه 🍭'],['../assets/img/p017.webp','مذاق الأصالة 🍯'],['img/squad.webp','فريق شوكو سكواد في انتظاركم !']];
+ $('#wall').innerHTML=P.map((p,i)=>`<div class="p${i?'':' on'}" data-i="${i}"><img src="${p[0]}" alt="" loading="lazy">${i<5?'<div class="soon">Nouvelles maquettes en cours</div>':''}</div>`).join('');
+ document.querySelectorAll('#wall .p').forEach(e=>e.onclick=()=>{document.querySelectorAll('#wall .p').forEach(x=>x.classList.remove('on'));e.classList.add('on');const p=P[+e.dataset.i];const im=$('#igimg');im.style.opacity=0;setTimeout(()=>{im.src=p[0];$('#igcap').textContent=p[1];im.style.opacity=1},200)})}
+// missions
+{const C={"setif": [407.8, 36.1], "alger": [341.3, 17.9], "oran": [236.6, 52.1], "constantine": [441.8, 30.3], "bejaia": [398.5, 17.9], "ouargla": [405.6, 174.1], "tlemcen": [217.4, 78.8], "ghardaia": [358.6, 156.6]};const M=[
+ ['setif','Épisode 1','Sétif','سطيف',"Mission départ : la machine s'allume dans l'entrepôt de Tiner Ouled Saber. La Squad se forme.",['lion','excite']],
+ ['alger','Épisode 2','Alger','الجزائر',"Les Excitos se cachent dans un présentoir à Bab El Oued. Chico doit les retrouver avant l'ouverture.",['excite','lion']],
+ ['oran','Épisode 3','Oran','وهران',"Les jumeaux Twam organisent un match sur le front de mer. Le paquet de graines est le trophée !",['twam','lion']],
+ ['constantine','Épisode 4','Constantine','قسنطينة',"Astra doit traverser les ponts suspendus pour livrer ses sucettes magiques avant la fête.",['astrat']],
+ ['bejaia','Épisode 5','Béjaïa','بجاية',"Djeddi Anfal raconte la recette du nougat à la Squad, sous les oliviers.",['anfal','lion']],
+ ['ghardaia','Épisode 6','Ghardaïa','غرداية',"Grande finale dans le désert : toute la Squad livre la surprise géante.",['lion','excite','twam','astrat','anfal']]];
+ const g=$('#pins');g.innerHTML=M.map((m,i)=>{const [x,y]=C[m[0]];return `<g class="pin" data-i="${i}"><circle class="ring" cx="${x}" cy="${y}" r="7" fill="none" stroke="#ED1B24" stroke-width="2"/><circle class="b" cx="${x}" cy="${y}" r="9" fill="#ED1B24" stroke="#23214a" stroke-width="2.5"/><text x="${x}" y="${y+3.5}" text-anchor="middle" font-family="Baloo" font-weight="800" font-size="10" fill="#fff">${i+1}</text><text x="${x}" y="${y-14}" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="9" fill="#23214a">${m[2]}</text></g>`}).join('');
+ function sel(i){const m=M[i];document.querySelectorAll('.pin').forEach(p=>p.classList.toggle('on',+p.dataset.i===i));
+  $('#ep').innerHTML=`<div class="n">${m[1]} · Mission</div><h3>${m[2]}</h3><div class="ar">${m[3]}</div><p style="margin-top:12px">${m[4]}</p><div class="who">${m[5].map(k=>`<img src="img/${k}.webp" alt="">`).join('')}</div><p style="margin:14px 0 0;font:800 14px Nunito;color:#ED1B24">Fin d'épisode : « Devenez revendeur » + numéros</p>`}
+ document.querySelectorAll('.pin').forEach(p=>p.onclick=()=>sel(+p.dataset.i));sel(0)}
+// calendar
+{const F={m:['var(--sun)','Mission'],c:['var(--pink)','Carte perso'],p:['var(--sky)','Produit star'],j:['var(--mint)','Jeu']};
+ const plan={1:'m',3:'c',5:'p',7:'j',8:'m',10:'c',12:'p',14:'j',15:'m',17:'c',19:'p',21:'j',22:'m',24:'c',26:'p',28:'j',29:'m',30:'p'};
+ let h=['Sam','Dim','Lun','Mar','Mer','Jeu','Ven'].map(d=>`<div class="d h">${d}</div>`).join('');
+ for(let d=1;d<=30;d++){const f=plan[d];h+=`<div class="d">${d}${f?`<span class="chip" style="--c:${F[f][0]}">${F[f][1]}</span>`:''}</div>`}$('#g7').innerHTML=h}
+// game
+{const c=$('#gc'),g=c.getContext('2d'),W=c.width,H=c.height;const L=new Image();L.src='img/lion.webp';
+ const IM=['twam','astrat','anfal','excite'].map(k=>{const i=new Image();i.src=`img/${k}.webp`;return i});
+ let st=0,sc=0,tl=30,px=W/2,items=[],t0=0,last=0,keys={};
+ const mv=e=>{const r=c.getBoundingClientRect();const x=(e.touches?e.touches[0].clientX:e.clientX)-r.left;px=x/r.width*W};c.addEventListener('mousemove',mv);c.addEventListener('touchmove',e=>{mv(e);e.preventDefault()},{passive:false});
+ addEventListener('keydown',e=>keys[e.key]=1);addEventListener('keyup',e=>keys[e.key]=0);
+ function spawn(){const bad=Math.random()<.18;items.push({x:30+Math.random()*(W-60),y:-30,v:2.4+Math.random()*2.2+sc*.02,bad,c:['#ED1B24','#FFC93C','#3DDC97','#4CC9F0','#FF7AA8'][Math.floor(Math.random()*5)],r:Math.random()*6})}
+ function candy(x,y,col,r){g.save();g.translate(x,y);g.rotate(r);g.fillStyle=col;g.beginPath();g.arc(0,0,14,0,7);g.fill();g.fillStyle='rgba(255,255,255,.6)';g.beginPath();g.arc(-4,-4,4,0,7);g.fill();g.fillStyle=col;g.beginPath();g.moveTo(-14,0);g.lineTo(-26,-9);g.lineTo(-26,9);g.fill();g.beginPath();g.moveTo(14,0);g.lineTo(26,-9);g.lineTo(26,9);g.fill();g.restore()}
+ function rock(x,y){g.fillStyle='#7a6a5a';g.beginPath();g.ellipse(x,y,16,12,.3,0,7);g.fill();g.fillStyle='#5a4a3a';g.beginPath();g.arc(x+4,y+2,4,0,7);g.fill()}
+ function frame(ts){if(st!==1)return;const dt=Math.min(50,ts-last);last=ts;tl=Math.max(0,30-(ts-t0)/1000);
+  if(keys.ArrowLeft)px-=9;if(keys.ArrowRight)px+=9;px=Math.max(50,Math.min(W-50,px));
+  if(Math.random()<.035+sc*.0006)spawn();g.clearRect(0,0,W,H);
+  // deco
+  g.globalAlpha=.25;IM.forEach((im,i)=>{if(im.complete)g.drawImage(im,60+i*200,H*.7-90,80,90*(im.height/im.width>1?1:.8))});g.globalAlpha=1;
+  items.forEach(it=>{it.y+=it.v*dt/16;it.r+=.05;it.bad?rock(it.x,it.y):candy(it.x,it.y,it.c,it.r);
+   if(it.y>H-120&&it.y<H-40&&Math.abs(it.x-px)<55){it.hit=1;if(it.bad){sc=Math.max(0,sc-3)}else{sc++;const r=c.getBoundingClientRect();if(sc%10==0)boom(r.left+px/W*r.width,r.top+(H-90)/H*r.height,40)}}});
+  items=items.filter(it=>!it.hit&&it.y<H+40);
+  if(L.complete){const h=150,w=h*L.width/L.height;g.drawImage(L,px-w/2,H-h-8,w,h)}
+  $('#gs').textContent='🍬 '+sc;$('#gt').textContent='⏱ '+Math.ceil(tl);
+  if(tl<=0){st=2;$('#gtitle').textContent=`Bravo ! ${sc} bonbons 🎉`;$('#gbtn').textContent='↻ Rejouer';$('#gstart').style.display='grid';const r=c.getBoundingClientRect();boom(r.left+r.width/2,r.top+r.height/2,120);return}
+  requestAnimationFrame(frame)}
+ $('#gbtn').onclick=()=>{$('#gstart').style.display='none';st=1;sc=0;items=[];requestAnimationFrame(ts=>{t0=last=ts;frame(ts)})};
+ L.onload=()=>{g.clearRect(0,0,W,H);const h=150,w=h*L.width/L.height;g.drawImage(L,W/2-w/2,H-h-8,w,h)}}
+// reveal
+{const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});document.querySelectorAll('.reveal').forEach(e=>io.observe(e))}
+</script></body></html>

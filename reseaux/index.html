@@ -84,11 +84,11 @@ section{position:relative}
 .hint{font:800 14px/1 Nunito;margin-top:16px;position:relative}
 /* machine */
 .mach{padding:110px 0;background:radial-gradient(90% 70% at 50% 40%,#5a2bd0,#24105e);color:#fff;overflow:hidden}
-.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}@media(max-width:860px){.mgrid{grid-template-columns:1fr}}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}@media(max-width:860px){.mgrid{grid-template-columns:1fr;gap:18px}.mimg{order:-1;max-width:300px!important}.mimg img.m{max-height:46vh;object-fit:cover;width:100%}.mtx{display:contents}.mtx>.reveal-h{order:-2}.mctl{position:sticky;bottom:12px;z-index:5}}
 .mimg{position:relative;max-width:440px;margin:auto}.mimg img.m{border-radius:30px;border:4px solid #fff;box-shadow:0 30px 80px rgba(0,0,0,.5)}
 .mimg.shake img.m{animation:shk .12s linear 8}@keyframes shk{25%{transform:translate(-6px,3px) rotate(-1deg)}75%{transform:translate(6px,-3px) rotate(1deg)}}
-.out{position:absolute;left:50%;bottom:-30px;width:230px;translate:-50% 0;scale:0;transition:scale .5s cubic-bezier(.3,1.8,.5,1);filter:drop-shadow(0 20px 20px rgba(0,0,0,.5));pointer-events:none}
-.out.show{scale:1}
+.out{position:absolute;left:50%;bottom:4%;width:62%;max-width:230px;translate:-50% 0;scale:0;transition:scale .5s cubic-bezier(.3,1.8,.5,1);filter:drop-shadow(0 20px 20px rgba(0,0,0,.5));pointer-events:none}
+.out.show{scale:1}.ob{position:absolute;left:50%;top:14px;translate:-50% 0;scale:0;transition:scale .4s cubic-bezier(.3,1.8,.5,1) .15s;background:var(--sun);color:var(--ink);border:3px solid var(--ink);border-radius:999px;padding:8px 16px;font:800 18px/1 Baloo;white-space:nowrap;box-shadow:3px 3px 0 var(--ink)}.ob.show{scale:1}
 .res{background:#fff;color:var(--ink);border:4px solid var(--ink);border-radius:24px;padding:22px;box-shadow:6px 6px 0 var(--sun);min-height:150px;margin-top:22px}
 .res b{font:800 28px/1.1 Baloo;display:block}.res .ar{font-size:22px;color:var(--red)}
 #confetti{position:fixed;inset:0;pointer-events:none;z-index:80}
@@ -186,13 +186,13 @@ section{position:relative}
 </div></section>
 
 <section class="mach" id="machine"><div class="wrap mgrid">
- <div class="reveal"><span class="kick" style="color:var(--ink)">🎰 Interactif</span>
+ <div class="mtx"><div class="reveal-h"><span class="kick" style="color:var(--ink)">🎰 Interactif</span>
   <h2 class="h2" style="margin-top:18px;color:#fff">Tournez la machine <span class="ar" style="color:var(--sun)">دوّر الآلة</span></h2>
-  <p class="lead" style="color:#e2d8ff;margin-top:14px">Le même jeu que sur le site, version Squad : chaque tour fait sortir un personnage et sa réplique culte. Une idée de story Instagram interactive.</p>
-  <button class="btn" id="crank" style="margin-top:12px">↻ Tourner la manivelle</button>
-  <div class="res" id="res"><b>Qui va sortir ?</b><span class="ar">جرّب حظك !</span></div>
+  <p class="lead" style="color:#e2d8ff;margin-top:14px">Le même jeu que sur le site, version Squad : chaque tour fait sortir un personnage et sa réplique culte. Une idée de story Instagram interactive.</p></div>
+  <div class="mctl"><button class="btn" id="crank" style="margin-top:12px">↻ Tourner la manivelle</button>
+  <div class="res" id="res"><b>Qui va sortir ?</b><span class="ar">جرّب حظك !</span></div></div>
  </div>
- <div class="mimg reveal" id="mimg"><img class="m" src="img/machine.webp" alt="La machine à surprises"><img class="out" id="out" alt=""></div>
+ <div class="mimg reveal" id="mimg"><img class="m" src="img/machine.webp" alt="La machine à surprises"><img class="out" id="out" alt=""><div class="ob" id="ob"></div></div>
 </div></section>
 
 <section class="posts" id="posts"><div class="wrap">
@@ -276,9 +276,9 @@ const cv=$('#confetti'),cx=cv.getContext('2d');let parts=[];function rs(){cv.wid
 function boom(x,y,n=90){const C=['#FFC93C','#ED1B24','#3DDC97','#4CC9F0','#FF7AA8','#9B5DE5'];for(let i=0;i<n;i++){const a=Math.random()*6.28,s=4+Math.random()*9;parts.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-6,r:Math.random()*6.28,vr:(Math.random()-.5)*.4,c:C[i%6],w:6+Math.random()*8,l:90})}if(!raf)loop()}
 let raf=0;function loop(){cx.clearRect(0,0,cv.width,cv.height);parts.forEach(p=>{p.vy+=.25;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.l--;cx.save();cx.translate(p.x,p.y);cx.rotate(p.r);cx.globalAlpha=Math.min(1,p.l/30);cx.fillStyle=p.c;cx.fillRect(-p.w/2,-p.w/4,p.w,p.w/2);cx.restore()});parts=parts.filter(p=>p.l>0);raf=parts.length?requestAnimationFrame(loop):0}
 // machine
-{let busy=0,last=-1;$('#crank').onclick=e=>{if(busy)return;busy=1;const m=$('#mimg'),o=$('#out');o.classList.remove('show');m.classList.add('shake');
+{let busy=0,last=-1;$('#crank').onclick=e=>{if(busy)return;busy=1;const m=$('#mimg'),o=$('#out');if(innerWidth<860){const r0=m.getBoundingClientRect();if(r0.top<60||r0.bottom>innerHeight-40)scrollBy({top:r0.top-80,behavior:'smooth'})}o.classList.remove('show');$('#ob').classList.remove('show');m.classList.add('shake');
  let k;do{k=Math.floor(Math.random()*CAST.length)}while(k===last);last=k;
- setTimeout(()=>{m.classList.remove('shake');const c=CAST[k];o.src=`img/${c.k}.webp`;o.classList.add('show');const r=m.getBoundingClientRect();boom(r.left+r.width/2,r.bottom-60);
+ setTimeout(()=>{m.classList.remove('shake');const c=CAST[k];o.src=`img/${c.k}.webp`;o.classList.add('show');$('#ob').textContent=c.n+' !';$('#ob').classList.add('show');const r=m.getBoundingClientRect();boom(r.left+r.width/2,r.top+r.height*.7);
   $('#res').innerHTML=`<b>${c.n} !</b><span class="ar">« ${c.q} »</span><p style="margin:8px 0 0;font-size:15px">${c.role} · ${c.p}</p>`;busy=0},1000)}}
 // posts wall (placeholders until mockups)
 {const P=[['../assets/img/p002.webp','طعم ولا أروع 🦁'],['../assets/img/p018.webp','الطعم اللي يحبوه الكل 🌻'],['../assets/img/p084.webp','فرح كل لحظة 🎁'],['../assets/img/p097.webp','ألوان و فواكه 🍭'],['../assets/img/p017.webp','مذاق الأصالة 🍯'],['img/squad.webp','فريق شوكو سكواد في انتظاركم !']];

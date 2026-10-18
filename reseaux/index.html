@@ -99,7 +99,7 @@ section{position:relative}
 .ig .top{display:flex;align-items:center;gap:10px;padding:6px 6px 10px;font:800 14px/1.2 Nunito}.ig .top img{width:38px;height:38px;border-radius:50%;border:2px solid var(--red);object-fit:contain;background:#fff;padding:2px}
 .ig .shot{aspect-ratio:4/5;border-radius:16px;overflow:hidden;background:var(--cream)}.ig .shot img{width:100%;height:100%;object-fit:cover;transition:opacity .3s}
 .ig .bar{display:flex;gap:14px;font-size:22px;padding:10px 6px 4px}.ig .cap{font-size:14px;padding:0 6px 6px}.ig .cap .ar{font-size:16px}
-.wall{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.wall{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}@media(max-width:600px){.wall{grid-template-columns:repeat(2,1fr)}}
 .wall .p{aspect-ratio:4/5;border-radius:18px;overflow:hidden;border:4px solid var(--ink);box-shadow:5px 5px 0 var(--ink);cursor:pointer;transition:transform .3s cubic-bezier(.3,1.8,.5,1);background:#fff;position:relative}
 .wall .p:nth-child(odd){transform:rotate(-2.5deg)}.wall .p:nth-child(even){transform:rotate(2deg)}
 .wall .p:hover{transform:rotate(0) scale(1.05);z-index:2}.wall .p img{width:100%;height:100%;object-fit:cover}
@@ -201,9 +201,9 @@ section{position:relative}
  <p class="lead" style="margin-top:14px">Entre deux épisodes, des visuels produits avec la Squad. Toujours les vrais emballages Choco Squad, une phrase courte en darija.</p></div>
  <div class="pgrid">
   <div class="ig reveal"><div class="top"><img src="img/logo.webp" alt=""><div>chocosquad<br><span style="font-weight:600;color:#888">Sétif, Algérie</span></div></div>
-   <div class="shot"><img id="igimg" src="../assets/img/p002.webp" alt=""></div>
+   <div class="shot"><img id="igimg" src="posts/post01.webp" alt=""></div>
    <div class="bar">♡ 💬 ➤ <span style="margin-left:auto">🔖</span></div>
-   <div class="cap"><b>chocosquad</b> <span class="ar" id="igcap">طعم ولا أروع 🦁</span></div></div>
+   <div class="cap"><b>chocosquad</b> <span class="ar" id="igcap">فريق شوكو سكواد 🦁 Plus qu'une gourmandise, une vraie squad !</span></div></div>
   <div class="wall reveal" id="wall"></div>
  </div>
 </div></section>
@@ -281,9 +281,9 @@ let raf=0;function loop(){cx.clearRect(0,0,cv.width,cv.height);parts.forEach(p=>
  setTimeout(()=>{m.classList.remove('shake');const c=CAST[k];o.src=`img/${c.k}.webp`;o.classList.add('show');$('#ob').textContent=c.n+' !';$('#ob').classList.add('show');const r=m.getBoundingClientRect();boom(r.left+r.width/2,r.top+r.height*.7);
   $('#res').innerHTML=`<b>${c.n} !</b><span class="ar">« ${c.q} »</span><p style="margin:8px 0 0;font-size:15px">${c.role} · ${c.p}</p>`;busy=0},1000)}}
 // posts wall (placeholders until mockups)
-{const P=[['../assets/img/p002.webp','طعم ولا أروع 🦁'],['../assets/img/p018.webp','الطعم اللي يحبوه الكل 🌻'],['../assets/img/p084.webp','فرح كل لحظة 🎁'],['../assets/img/p097.webp','ألوان و فواكه 🍭'],['../assets/img/p017.webp','مذاق الأصالة 🍯'],['img/squad.webp','فريق شوكو سكواد في انتظاركم !']];
- $('#wall').innerHTML=P.map((p,i)=>`<div class="p${i?'':' on'}" data-i="${i}"><img src="${p[0]}" alt="" loading="lazy">${i<5?'<div class="soon">Nouvelles maquettes en cours</div>':''}</div>`).join('');
- document.querySelectorAll('#wall .p').forEach(e=>e.onclick=()=>{document.querySelectorAll('#wall .p').forEach(x=>x.classList.remove('on'));e.classList.add('on');const p=P[+e.dataset.i];const im=$('#igimg');im.style.opacity=0;setTimeout(()=>{im.src=p[0];$('#igcap').textContent=p[1];im.style.opacity=1},200)})}
+{const P=[['posts/post01.webp','فريق شوكو سكواد 🦁 Plus qu’une gourmandise, une vraie squad !'],['posts/post02.webp','شيكو ميكو… الطعم اللي يشوكي 🍪'],['posts/post03.webp','لحظات نتقاسموها ⚽🌻 Des moments à partager'],['posts/post04.webp','المفاجأة وين؟ 🎁 La Squad n’a pas fini de surprendre'],['posts/post05.webp','ألوان أكثر… متعة أكبر 🍭'],['posts/post06.webp','كونوا من فريقنا 🤝 Devenez revendeur'],['posts/post07.webp','40 عام و حنا نفرحو الدزاير 🎉'],['img/squad.webp','🎬 Le teaser : الآلة… راهي جاية !']];
+ $('#wall').innerHTML=P.map((p,i)=>`<div class="p${i?'':' on'}" data-i="${i}"><img src="${p[0]}" alt="" loading="lazy">${i==7?'<div class="soon">▶ Teaser vidéo</div>':''}</div>`).join('');
+ document.querySelectorAll('#wall .p').forEach(e=>e.onclick=()=>{const k=+e.dataset.i;if(k==7){location.hash='teaser';return}document.querySelectorAll('#wall .p').forEach(x=>x.classList.remove('on'));e.classList.add('on');const p=P[k];const im=$('#igimg');im.style.opacity=0;setTimeout(()=>{im.src=p[0];$('#igcap').textContent=p[1];im.style.opacity=1},200);if(innerWidth<900)$('.ig').scrollIntoView({behavior:'smooth',block:'center'})})}
 // missions
 {const C={"setif": [407.8, 36.1], "alger": [341.3, 17.9], "oran": [236.6, 52.1], "constantine": [441.8, 30.3], "bejaia": [398.5, 17.9], "ouargla": [405.6, 174.1], "tlemcen": [217.4, 78.8], "ghardaia": [358.6, 156.6]};const M=[
  ['setif','Épisode 1','Sétif','سطيف',"Mission départ : la machine s'allume dans l'entrepôt de Tiner Ouled Saber. La Squad se forme.",['lion','excite']],
